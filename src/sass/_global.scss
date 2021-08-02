@@ -1,7 +1,15 @@
 html,body{
   height: 100%;
 }
+
 body{
   @extend %defaultFontSet;
   @extend %openSansFont;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1110px;
+  margin: 0 auto;
+  padding: 0 15px;
 }

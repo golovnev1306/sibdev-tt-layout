@@ -93,4 +93,46 @@
   }
 }
 
+.header{
+  border-bottom: 1px solid $darkGrayColor;
+  &__inner{
+    padding: 40px 0;
+  }
+  &__title{
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 38px;
+    padding-bottom: 31px;
+    opacity: 0.85;
+  }
+}
+.search{
+  &__form{
+    position: relative;
+  }
 
+  &__form-icon {
+    position: absolute;
+    background: url("../images/icon/search.svg") no-repeat;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 16px;
+  }
+
+  &__form-input{
+    width: 100%;
+    font-size: 18px;
+    line-height: 28px;
+    padding: 12px 16px 12px 44px;
+    border: 1px solid rgba($lightBlack, 0.2);
+    border-radius: 50px;
+    outline: none;
+
+    &::placeholder{
+      opacity: 0.85;
+    }
+  }
+}
