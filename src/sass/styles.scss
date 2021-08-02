@@ -2,3 +2,95 @@
 @import "fonts";
 @import "vars";
 @import "global";
+
+.page {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 201px 1fr;
+}
+
+.sidebar {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  padding: 41px 10px 0 $leftOffsetNav;
+  background-color: $grayColor;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    padding-bottom: 60px;
+  }
+
+  &__logo-img {
+    background: url("../images/sidebar-logo.svg") no-repeat;
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+  }
+
+  &__logo-title {
+    padding-left: 10px;
+    @extend %poppinsFont;
+    font-weight: 500;
+    line-height: 24px;
+  }
+}
+
+.menu {
+  &__item {
+    padding-bottom: 42px;
+    @extend %openSansFont;
+    font-weight: 600;
+    line-height: 22px;
+
+    &.active{
+      @each $item in $navigation {
+        .menu__item-link--#{$item}:before {
+          background: url("../images/icon/active/#{$item}.svg");
+        }
+      }
+      .menu__item-link{
+        color: $blueColor;
+      }
+      .menu__item-link:after{
+        background-color: $blueColor;
+      }
+    }
+  }
+
+  &__item-link {
+    padding-left: 34px;
+    position: relative;
+    transition: all .2s ease-in-out;
+
+    &:before, &:after{
+      content: '';
+      position: absolute;
+      top: 0;
+      transition: all .2s ease-in-out;
+    }
+
+    &:after{
+      left: -#{$leftOffsetNav};
+      width: 3px;
+      height: 100%;
+      background-color: transparent;
+    }
+
+    &:before {
+      left: 0;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 24px;
+      height: 24px;
+    }
+
+    @each $item in $navigation {
+      &--#{$item}:before {
+        background: url("../images/icon/default/#{$item}.svg");
+      }
+    }
+  }
+}
+
+

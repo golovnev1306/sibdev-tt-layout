@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production",
+    "dev": "webpack --mode=development --watch"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,8 @@
     "sass": "^1.37.0",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",
+    "svgo-loader": "^3.0.0",
+    "ts-loader": "^9.2.4",
     "webpack": "^5.47.1",
     "webpack-cli": "^4.7.2"
   },

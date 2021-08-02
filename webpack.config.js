@@ -3,15 +3,27 @@ const path = require('path')
 
 module.exports = {
   entry: './src/index.ts',
+  experiments: {
+    asset: true,
+  },
   output: {
-    filename: 'main.js',
+    filename: '[contenthash].main.js',
     path: path.resolve(__dirname, 'dist'),
+    clean: true,
   },
   plugins: [new HtmlWebpackPlugin({
     template: './src/index.html',
   })],
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
   module: {
     rules: [
+      {
+        test: /\.svg$/,
+        type: 'asset',
+        use: 'svgo-loader',
+      },
       {
         test: /\.s[ac]ss$/i,
         use: [
@@ -26,6 +38,11 @@ module.exports = {
           'style-loader',
           'css-loader',
         ],
+      },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
       },
     ],
   },
