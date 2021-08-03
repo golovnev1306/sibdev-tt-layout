@@ -1,3 +1,5 @@
+const webpack = require('webpack')
+
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
@@ -13,12 +15,17 @@ module.exports = {
   },
   plugins: [new HtmlWebpackPlugin({
     template: './src/index.html',
-  })],
+    inject: 'body',
+  }), new webpack.HotModuleReplacementPlugin()],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
   module: {
     rules: [
+      {
+        test: /\.(html)$/,
+        use: ['html-loader'],
+      },
       {
         test: /\.svg$/,
         type: 'asset',
@@ -29,6 +36,18 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    'autoprefixer',
+                  ],
+                ],
+              },
+            },
+          },
           'sass-loader',
         ],
       },
@@ -37,6 +56,7 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
+          'postcss-loader',
         ],
       },
       {
@@ -45,5 +65,13 @@ module.exports = {
         exclude: /node_modules/,
       },
     ],
+  },
+  devServer: {
+    historyApiFallback: true,
+    contentBase: path.resolve(__dirname, './dist'),
+    open: true,
+    compress: true,
+    hot: true,
+    port: 8080,
   },
 }
