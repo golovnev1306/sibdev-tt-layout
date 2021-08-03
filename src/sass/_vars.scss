@@ -5,6 +5,8 @@ $lightBlack: #333333;
 $blueColor: #34ABE0;
 $redColor: #DF212D;
 
+$sizes: ("xs":320px, "md":768px);
+
 $navigation: catalog, health, beauty, enjoy, car;
 $leftOffsetNav: 41px;
 
@@ -12,4 +14,14 @@ $leftOffsetNav: 41px;
   font-size: 16px;
   font-weight: 400;
   line-height: 16px;
+}
+
+@mixin media($minmax, $media) {
+  @each $size, $resolution in $sizes {
+    @if $media == $size {
+      @media only screen and (#{$minmax}-width: $resolution) {
+        @content;
+      }
+    }
+  }
 }

@@ -7,6 +7,9 @@
   display: grid;
   grid-template-columns: 240px 1fr;
   grid-template-rows: 201px 1fr;
+  @include media("max", "md"){
+    grid-template-columns: 104px 1fr;
+  }
 }
 
 .sidebar {
@@ -26,6 +29,10 @@
     background-size: cover;
     height: 50px;
     width: 50px;
+    @include media("max", "md"){
+      height: 25px;
+      width: 25px;
+    }
   }
 
   &__logo-title {
@@ -33,6 +40,9 @@
     @extend %poppinsFont;
     font-weight: 500;
     line-height: 24px;
+    @include media("max", "md"){
+      display: none;
+    }
   }
 }
 
@@ -89,6 +99,12 @@
       &--#{$item}:before {
         background: url("../images/icon/default/#{$item}.svg");
       }
+    }
+  }
+
+  &__item-link-text{
+    @include media("max", "md"){
+      display: none;
     }
   }
 }
