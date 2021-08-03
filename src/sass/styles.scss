@@ -9,6 +9,20 @@
   grid-template-rows: 201px 1fr;
   @include media("max", "md") {
     grid-template-columns: 104px 1fr;
+    grid-template-rows: 169px 1fr;
+  }
+
+  &__header {
+    @include media("max", "md") {
+      grid-column-start: 2;
+    }
+  }
+
+  &__main {
+    @include media("max", "md") {
+      grid-column-start: 2;
+      grid-row-start: 2;
+    }
   }
 }
 
@@ -17,6 +31,16 @@
   grid-row-end: 3;
   padding: 41px 10px 0 $leftOffsetNav;
   background-color: $grayColor;
+  position: relative;
+  width: 240px;
+  transition: all .3s ease-in-out;
+
+  @include media("max", "md") {
+    width: 104px;
+    position: fixed;
+    height: 100%;
+    z-index: 2;
+  }
 
   &__logo {
     display: flex;
@@ -32,6 +56,7 @@
     @include media("max", "md") {
       height: 25px;
       width: 25px;
+      min-width: 25px;
     }
   }
 
@@ -41,12 +66,72 @@
     font-weight: 500;
     line-height: 24px;
     @include media("max", "md") {
-      display: none;
+      opacity: 0;
+      font-size: 14px;
     }
   }
+
+  &__burger {
+    display: none;
+    position: absolute;
+    background: url("../images/burger-container.svg") no-repeat;
+    background-size: cover;
+    top: 0;
+    right: 0;
+    width: 48px;
+    height: 106px;
+    transform: translateX(calc(100% - 1px));
+    text-align: left;
+    cursor: pointer;
+
+
+    &::before {
+      content: '';
+      position: absolute;
+      background: url("../images/icon/burger-menu.svg") no-repeat;
+      background-size: cover;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      width: 26px;
+      height: 20px;
+    }
+
+    @include media("max", "md") {
+      display: block;
+    }
+  }
+
+  &__burger-img {
+    pointer-events: none;
+    user-select: none;
+  }
+
+  @include media("max", "md") {
+    &--open {
+      width: 240px;
+
+      .sidebar__logo-title {
+        opacity: 1;
+      }
+
+      .menu__item-link-text {
+        opacity: 1;
+        z-index: 0;
+      }
+
+      .sidebar__burger:before {
+        background: url("../images/icon/menu-exit.svg");
+
+      }
+    }
+  }
+
 }
 
 .menu {
+  overflow: hidden;
+
   &__item {
     padding-bottom: 42px;
     @extend %openSansFont;
@@ -74,6 +159,7 @@
     padding-left: 34px;
     position: relative;
     transition: all .2s ease-in-out;
+    white-space: nowrap;
 
     &:before, &:after {
       content: '';
@@ -106,18 +192,22 @@
 
   &__item-link-text {
     @include media("max", "md") {
-      display: none;
+      opacity: 0;
+      position: absolute;
+      z-index: -1;
     }
   }
 }
 
 .header {
   border-bottom: 1px solid $darkGrayColor;
+  background-color: #FFFFFF;
+  transition: all .3s ease-in-out;
 
   &__inner {
     padding: 40px 0;
     @include media("max", "md") {
-      padding: 31px 0 27px;
+      padding: 31px 0 26px;
     }
   }
 
@@ -129,9 +219,27 @@
     opacity: 0.85;
     @include media("max", "md") {
       text-align: right;
-      padding-bottom: 33px;
+      padding-bottom: 21px;
     }
   }
+
+  @include media("max", "md") {
+    &--fixed {
+      position: fixed;
+      width: 100%;
+      z-index: 1;
+      padding-left: 29px;
+
+      .header__inner {
+        padding: 31px 0 24px 124px;
+      }
+
+      .header__title {
+        display: none;
+      }
+    }
+  }
+
 }
 
 .search {
@@ -176,7 +284,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
-    @include media("max", "md"){
+    @include media("max", "md") {
       grid-template-columns: repeat(2, 1fr);
     }
   }
@@ -188,7 +296,7 @@
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
   min-width: 347px;
   cursor: pointer;
-  @include media("max", "md"){
+  @include media("max", "md") {
     min-width: 296px;
   }
 
@@ -220,7 +328,7 @@
     flex-grow: 1;
     padding: 18px 0 18px 20px;
     white-space: nowrap;
-    @include media("max", "md"){
+    @include media("max", "md") {
       padding: 15px 0 15px 18px;
     }
   }
@@ -231,7 +339,7 @@
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    @include media("max", "md"){
+    @include media("max", "md") {
       font-size: 14px;
     }
   }
@@ -239,7 +347,7 @@
   &__description {
     padding-bottom: 43px;
     opacity: .5;
-    @include media("max", "md"){
+    @include media("max", "md") {
       padding-bottom: 31px;
       font-size: 14px;
     }
@@ -253,7 +361,7 @@
     font-weight: 500;
     color: $redColor;
     text-transform: uppercase;
-    @include media("max", "md"){
+    @include media("max", "md") {
       padding-bottom: 3px;
     }
   }
@@ -269,7 +377,7 @@
     width: 130px;
     height: 161px;
     display: flex;
-    @include media("max", "md"){
+    @include media("max", "md") {
       width: 104px;
       height: 144px;
     }
