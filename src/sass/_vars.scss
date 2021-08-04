@@ -5,7 +5,7 @@ $lightBlack: #333333;
 $blueColor: #34ABE0;
 $redColor: #DF212D;
 
-$sizes: ("xs":320px, "md":768px);
+$sizes: ("xs":320px, "md-1": 767px, "md":768px, "lg": 1024px, "xl-1": 1439px, "xl": 1440px);
 
 $navigation: catalog, health, beauty, enjoy, car;
 $leftOffsetNav: 41px;

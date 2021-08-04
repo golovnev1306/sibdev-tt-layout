@@ -374,27 +374,42 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
+
+    @include media("max", "xl-1") {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include media("max", "lg") {
+      grid-template-columns: 1fr;
+    }
+
     @include media("max", "md") {
       grid-template-columns: repeat(2, 1fr);
     }
-    @include media("max", "xs") {
+
+    @include media("max", "md-1") {
       grid-template-columns: 1fr;
     }
   }
 }
 
 .entertainment-card {
-
   @extend %robotoFont;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
-  min-width: 347px;
+  max-width: 347px;
+  width: 100%;
   cursor: pointer;
+  @include media("max", "xl") {
+    max-width: 347px;
+    justify-self: center;
+  }
+
   @include media("max", "md") {
-    min-width: 296px;
+    max-width: 296px;
   }
 
   @include media("max", "xs") {
-    min-width: 268px;
+    max-width: 268px;
   }
 
   &:hover:before {
